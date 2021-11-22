@@ -112,14 +112,28 @@ class Result
 
 const results = 
 [
-	new Result("Оцінка незадовільна! Повчи ще =)", 0),
-	new Result("Непогано, але ще багато помилок...", 8),
-	new Result("Добре!", 10),
-	new Result("Ви знаєте тему бездоганно!", 13)
+	new Result("Оцінка незадовільна! Повчи ще =)<br/><a style=\"text-decoration: none;\" href=\"\\\">Перейти до теорії</a>", 0),
+	new Result("Непогано, але ще багато помилок...<br/><a style=\"text-decoration: none;\" href=\"\\\">Перейти до теорії</a>", 8),
+	new Result("Добре!<br/><a style=\"text-decoration: none;\" href=\"\\\">Перейти до теорії</a>", 10),
+	new Result("Ви знаєте тему бездоганно!<br/><a style=\"text-decoration: none;\" href=\"\\\">Перейти до теорії</a>", 13)
 ];
 
 const questions = 
 [
+	new Question("Формула переходу від матриці втрат до матриці жалю: ", 
+	[
+		new Answer("<img src=\"images/answer1-1.png\">", 1),
+		new Answer("<img src=\"images/answer1-2.png\">", 0),
+		new Answer("<img src=\"images/answer1-3.png\">", 0),
+		new Answer("<img src=\"images/answer1-4.png\">", 0)
+	]),
+	new Question("Якої форми клин при рандомізованому розв’язку? ", 
+	[
+		new Answer("90°", 1),
+		new Answer("45°", 0),
+		new Answer("135°", 0),
+		new Answer("180°", 0)
+	]),
 	new Question("Які стратегії необхідно виключити із розгляду у методі Неймана-Пірсона?", 
 	[
 		new Answer("Більші за допустиме граничне значення", 1),
@@ -128,13 +142,7 @@ const questions =
 		new Answer("Що не дорівнюють граничному значенню", 0)
 	]),
 
-	new Question("Формула переходу від матриці втрат до матриці жалю: ", 
-	[
-		new Answer("\\(s_{ij}=l_{ij}-\\displaystyle \\min_{i}l_{ij}\\)", 1),
-		new Answer("\\(l_{ij}=s_{ij}-\\displaystyle\\min_{i}l_{ij}\\)", 0),
-		new Answer("\\(s_{ij}=\\displaystyle\\min_{i}l_{ij}-l_{ij}\\)", 0),
-		new Answer("\\(s_{ij}=\\displaystyle\\max_{i}l_{ij}-l_{ij}\\)", 0)
-	]),
+
 ];
 
 const quiz = new Quiz(1, questions, results);
