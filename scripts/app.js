@@ -125,10 +125,10 @@ const questions =
 	//1
 	new Question("Формула переходу від матриці втрат до матриці жалю: ", 
 	[
-		new Answer("<img src=\"images/answer1-1.png\">", 0),
-		new Answer("<img src=\"images/answer1-2.png\">", 0),
-		new Answer("<img src=\"images/answer1-3.png\">", 0),
-		new Answer("<img src=\"images/answer1-4.png\">", 0)
+		new Answer("<img src=\"images/answer1-1.png\">", 1),
+		new Answer("<img src=\"images/answer1-2.png\">", 1),
+		new Answer("<img src=\"images/answer1-3.png\">", 1),
+		new Answer("<img src=\"images/answer1-4.png\">", 1)
 	]),
 	//2
 	new Question("<img src=\"images/q2-2.png\"> <img src=\"images/q2.png\"> <img src=\"images/q2-3.png\"> ", 
@@ -181,10 +181,10 @@ const questions =
 	//1
 	new Question("Які стратегії необхідно виключити із розгляду у методі Неймана-Пірсона?", 
 	[
-		new Answer("Менші за допустиме граничне значення", 0),
-		new Answer("Менші за допустиме граничне значення", 0),
-		new Answer("Що не дорівнюють граничному значенню", 0),
-		new Answer("Більші за допустиме граничне значення", 0),
+		new Answer("Менші за допустиме граничне значення", 1),
+		new Answer("Менші за допустиме граничне значення", 1),
+		new Answer("Що не дорівнюють граничному значенню", 1),
+		new Answer("Більші за допустиме граничне значення", 1),
 	]),
 	//2
 	new Question("Критерій Неймана-Пірсонали застосовується коли природа знаходиться у 2 станах: ", 
