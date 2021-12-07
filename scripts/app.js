@@ -2,6 +2,13 @@ const headElem = document.getElementById("head");
 const buttonsElem = document.getElementById("buttons");
 const pagesElem = document.getElementById("pages");
 
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
 class Quiz
 {
 	constructor(type, questions, results)
@@ -113,22 +120,22 @@ class Result
 const results = 
 [
 	new Result("Оцінка незадовільна! Повчи ще =)<br/><a style=\"text-decoration: none;\" href=\"\\\">Перейти до теорії</a>", 0),
-	new Result("Непогано, але ще багато помилок...<br/><a style=\"text-decoration: none;\" href=\"\\\">Перейти до теорії</a>", 8),
-	new Result("Добре!<br/><a style=\"text-decoration: none;\" href=\"\\\">Перейти до теорії</a>", 10),
-	new Result("Ви знаєте тему бездоганно!<br/><a style=\"text-decoration: none;\" href=\"\\\">Перейти до теорії</a>", 13)
+	new Result("Непогано, але ще багато помилок...<br/><a style=\"text-decoration: none;\" href=\"\\\">Перейти до теорії</a>", 5),
+	new Result("Добре!<br/><a style=\"text-decoration: none;\" href=\"\\\">Перейти до теорії</a>", 7),
+	new Result("Ви знаєте тему бездоганно!<br/><a style=\"text-decoration: none;\" href=\"\\\">Перейти до теорії</a>", 10)
 ];
 
-const questions = 
+var questions = 
 [
-	// question with solve
+	// question with solves
 
 	//1
 	new Question("Формула переходу від матриці втрат до матриці жалю: ", 
 	[
 		new Answer("<img src=\"images/answer1-1.png\">", 1),
-		new Answer("<img src=\"images/answer1-2.png\">", 1),
-		new Answer("<img src=\"images/answer1-3.png\">", 1),
-		new Answer("<img src=\"images/answer1-4.png\">", 1)
+		new Answer("<img src=\"images/answer1-2.png\">", 0),
+		new Answer("<img src=\"images/answer1-3.png\">", 0),
+		new Answer("<img src=\"images/answer1-4.png\">", 0)
 	]),
 	//2
 	new Question("<img src=\"images/q2-2.png\"> <img src=\"images/q2.png\"> <img src=\"images/q2-3.png\"> ", 
@@ -181,10 +188,10 @@ const questions =
 	//1
 	new Question("Які стратегії необхідно виключити із розгляду у методі Неймана-Пірсона?", 
 	[
-		new Answer("Менші за допустиме граничне значення", 1),
-		new Answer("Менші за допустиме граничне значення", 1),
-		new Answer("Що не дорівнюють граничному значенню", 1),
-		new Answer("Більші за допустиме граничне значення", 1),
+		new Answer("Яким відповідають втрати, більші за граничне значення", 1),
+		new Answer("Яким відповідають втрати, менші за граничне значення", 0),
+		new Answer("Яким відповідають втрати, що дорівнюють граничному значенню", 0),
+		new Answer("Яким відповідають втрати, що не дорівнюють граничному значенню", 0),
 	]),
 	//2
 	new Question("Критерій Неймана-Пірсонали застосовується коли природа знаходиться у 2 станах: ", 
@@ -228,7 +235,15 @@ const questions =
 
 ];
 
-const quiz = new Quiz(1, questions, results);
+const quiz = new Quiz(
+	1, 
+	questions
+		.map((value) => ({ value, sort: Math.random() }))
+		.sort((a, b) => a.sort - b.sort)
+		.map(({ value }) => value)
+		.slice(0, 10), 
+	results
+);
 
 Update();
 
@@ -248,6 +263,9 @@ function Update()
 			btn.innerHTML = quiz.questions[quiz.current].answers[i].text;
 
 			btn.setAttribute("index", i);
+			Array.from(btn.children).forEach(element => {
+				element.setAttribute("index", i)
+			});
 
 			buttonsElem.appendChild(btn);
 		}
@@ -271,9 +289,11 @@ function Init()
 	for(let i = 0; i < btns.length; i++)
 	{
 		btns[i].addEventListener("click", function (e) { Click(e.target.getAttribute("index")); });
-	}
-
-	
+		
+		Array.from(btns[i].children).forEach(element => {
+			element.addEventListener("click", function (e) { Click(e.target.getAttribute("index")); });
+		});
+	}	
 }
 
 function Click(index) 
